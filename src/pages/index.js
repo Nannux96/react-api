@@ -15,6 +15,8 @@ export default function Home() {
   const [actors, setActors] = useState([])
   const [actresses, setActresses] = useState([])
 
+  const [yearOfBirth, setYearOfBirth] = useState("")
+
   function getActors() {
     axios.get(`${apiUrl}/${actorsEndpoint}`).then((r) => {
       console.log("Attori", r.data);
@@ -39,6 +41,12 @@ export default function Home() {
     getActresses()
   }, [])
 
+  function handleYearOfBirthChange(e) {
+    setYearOfBirth(e.target.value)
+  }
+
+  console.log(yearOfBirth)
+
   return (
     <>
       <Head>
@@ -51,7 +59,12 @@ export default function Home() {
 
       {/* <button onClick={getActors}>Carica</button> */}
 
-      <ActorsList actors={actors} actresses={actresses}/>
+      <div>
+        Filtra per anno di nascita
+        <input value={yearOfBirth} onChange={handleYearOfBirthChange} />
+      </div>
+
+      <ActorsList actors={actors.filter(actor => actor.birth_year == yearOfBirth)} actresses={actresses.filter(actress => actress.birth_year == yearOfBirth)} />
     </>
   );
 }
