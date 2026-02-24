@@ -3,38 +3,9 @@ import axios from "axios";
 import Card from "@/components/Card"
 
 
-export default function ActorsList(props) {
+export default function ActorsList({actors, actresses}) {
 
-	const apiUrl = "https://lanciweb.github.io/demo/api";
-	const actorsEndpoint = "actors"
-	const actressesEndpoint = "actresses"
-
-	const [actors, setActors] = useState([])
-	const [actresses, setActresses] = useState([])
-
-	function getActors() {
-		axios.get(`${apiUrl}/${actorsEndpoint}`).then((r) => {
-			console.log("Attori", r.data);
-
-			setActors(r.data)
-		}).catch((e) => {
-			console.log("Errore", e.message);
-		})
-	}
-
-	function getActresses() {
-		axios.get(`${apiUrl}/${actressesEndpoint}`).then((r) => {
-			console.log("Attrici", r.data);
-			setActresses(r.data)
-		}).catch((e) => {
-			console.log("Errore", e.message);
-		})
-	}
-
-	useEffect(() => {
-		getActors()
-		getActresses()
-	}, [])
+	
 
 	return <div className="componente">
 		<div className="card-list">

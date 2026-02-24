@@ -8,7 +8,36 @@ import ActorsList from "@/components/ActrorsList"
 import data from "@/data/data";
 
 export default function Home() {
+  const apiUrl = "https://lanciweb.github.io/demo/api";
+  const actorsEndpoint = "actors"
+  const actressesEndpoint = "actresses"
 
+  const [actors, setActors] = useState([])
+  const [actresses, setActresses] = useState([])
+
+  function getActors() {
+    axios.get(`${apiUrl}/${actorsEndpoint}`).then((r) => {
+      console.log("Attori", r.data);
+
+      setActors(r.data)
+    }).catch((e) => {
+      console.log("Errore", e.message);
+    })
+  }
+
+  function getActresses() {
+    axios.get(`${apiUrl}/${actressesEndpoint}`).then((r) => {
+      console.log("Attrici", r.data);
+      setActresses(r.data)
+    }).catch((e) => {
+      console.log("Errore", e.message);
+    })
+  }
+
+  useEffect(() => {
+    getActors()
+    getActresses()
+  }, [])
 
   return (
     <>
@@ -22,7 +51,7 @@ export default function Home() {
 
       {/* <button onClick={getActors}>Carica</button> */}
 
-      <ActorsList />
+      <ActorsList actors={actors} actresses={actresses}/>
     </>
   );
 }
