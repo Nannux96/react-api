@@ -16,3 +16,27 @@ body {
   border: solid 1px crimson;
   padding: 1rem;
 }
+
+.card-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.card {
+  padding: 0.5rem;
+  width: calc((100% - 3rem) / 4 );
+  background-color: black;
+}
+
+.card-image {
+  width: 100%;
+}
+
+.card-information-list {
+  padding-left: 1rem;
+}
+
+.card-information-list ol{
+  padding-left: 2rem;
+}

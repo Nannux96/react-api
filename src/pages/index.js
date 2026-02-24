@@ -4,29 +4,11 @@ import axios from "axios";
 import Head from "next/head";
 
 import Componente from "@/components/Componente"
+import ActorsList from "@/components/ActrorsList"
 import data from "@/data/data";
 
 export default function Home() {
 
-  const apiUrl = "https://lanciweb.github.io/demo/api";
-  const actorsEndpoint = "actors"
-  const actressesEndpoint = "actresses"
-
-  function getActors() {
-    axios.get(`${apiUrl}/${actorsEndpoint}`).then((r) => {
-      console.log("Attori", r.data);
-      axios.get(`${apiUrl}/${actressesEndpoint}`).then((r) => {
-        console.log("Attrici", r.data);
-      }).catch((e) => {
-        console.log("Errore", e.message);
-      })
-    }).catch((e) => {
-      console.log("Errore", e.message);
-    })
-  }
-
-  
-  useEffect(getActors, [])
 
   return (
     <>
@@ -38,7 +20,9 @@ export default function Home() {
       </Head>
       {/* <Componente proprieta={x} /> */}
 
-      <button onClick={getActors}>Carica</button>
+      {/* <button onClick={getActors}>Carica</button> */}
+
+      <ActorsList />
     </>
   );
 }
